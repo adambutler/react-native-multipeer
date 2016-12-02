@@ -184,14 +184,14 @@ RCT_EXPORT_METHOD(disconnect:(RCTResponseSenderBlock)callback) {
   NSError *error = nil;
   id object = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
   NSDictionary *parsedJSON = [NSDictionary dictionary];
-  
+
   if([object isKindOfClass:[NSDictionary class]]) {
     parsedJSON = object;
   }
-  
+
   [self.bridge.eventDispatcher sendDeviceEventWithName:@"RCTMultipeerConnectivityDataReceived"
                                body:@{
-                                 @"sender": @{
+                                 @"peer": @{
                                    @"id": peerID.displayName
                                  },
                                  @"data": parsedJSON
@@ -210,7 +210,7 @@ RCT_EXPORT_METHOD(disconnect:(RCTResponseSenderBlock)callback) {
 //- (void)session:(MCSession *)session
 //didStartReceivingResourceWithName:(NSString *)resourceName fromPeer:(MCPeerID *)peerID withProgress:(NSProgress *)progress
 //{
-//  
+//
 //}
 
 
